@@ -35,16 +35,18 @@ app.get("/:word/echo", (req, res) => {
     });
 });
 
-app.route("/name").get((request, response) => {
-    let string = request.query.first + " " + request.query.last;
-    response.json({
+app.get("/name", (req, res) => {
+    let string = req.query.first + " " + req.query.last;
+    res.json({
         name: string
     });
-}).post((request, response) => {
-    let string = request.body.first + " " + request.body.last;
-    response.json({
+});
+
+app.post("/name", (req, res) => {
+    let string = req.body.first + " " + req.body.last;
+    res.json({
         name: string
-    })
+    });
 });
 
 app.get("/json", (req, res) => {
