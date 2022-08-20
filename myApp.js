@@ -3,6 +3,16 @@ let express = require('express');
 let app = express();
 require('dotenv').config();
 
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, (err, res) => {
+    if (err) {
+        console.log(err + "error" + err)
+    } else {
+        console.log("successful database connection");
+    }
+});
+
 app.use((req, res, next) => {
     var string = req.method + " " + req.path + " - " + req.ip;
     console.log(string);
